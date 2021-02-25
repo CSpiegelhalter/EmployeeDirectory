@@ -36,7 +36,11 @@ export default class DataArea extends Component {
         return(
             <div>
                 <Navbar handleSearchChange={this.handleSearchChange} />
-                
+                <DataTable
+                    headings={this.headings}
+                    users={this.state.filteredUsers}
+                    handleSort={this.handleSort}
+                />
             </div>
         )
     }
