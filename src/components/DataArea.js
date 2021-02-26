@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DataTable from './DataTable';
-import Nav from './Navbar';
 import API from '../util/API';
 import Navbar from './Navbar';
 
@@ -20,8 +19,16 @@ export default class DataArea extends Component {
         {name: "DOB", width: "15%"}
     ]
 
-
-
+    handleSearchChange = e => {
+        const search = e.target.value
+        const searchList = this.state.users.filter(each => {
+            let userInfo = Object.values(each)
+                .join("")
+                .toLowerCase()
+            return userInfo.indexOf(search.toLowerCase()) !== -1
+        })
+        this.setState({ filteredUsers: searchList })
+    }
 
     componentDidMount() {
         API.getUsers().then(results => {
